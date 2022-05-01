@@ -1,27 +1,38 @@
 const express = require('express')
 const router = express.Router()
-// const {
-//   getGoals,
-//   setGoal,
-//   updateGoal,
-//   deleteGoal,
-// } = require('../controllers/goalController')
+const {
+  getGoals,
+  setGoal,
+  updateGoal,
+  deleteGoal,
+} = require('../controllers/goalController')
 
-router.get('/', (req, res) => {
-  res.status(200).json({ message: 'Get goals'})
-})
+// ANOTHER SYNTAX TO CLEAN UP THE ROUTES
+// router.route('/').get(protect, getGoals).post(protect, setGoal)
+// router.route('/:id').delete(protect, deleteGoal).put(protect, updateGoal)
 
-router.post('/', (req, res) => {
-  res.status(200).json({ message: 'Create goal'})
-})
+router.get('/', getGoals)
+router.post('/', setGoal)
+router.put('/:id', updateGoal)
+router.delete('/:id', deleteGoal)
 
-router.put('/:id', (req, res) => {
-  res.status(200).json({ message: `Update goal ${req.params.id}`})
-})
+// TESTING START - now imported from goalController.js
+// router.get('/', (req, res) => {
+//   res.status(200).json({ message: 'Get goals' })
+// })
 
-router.delete('/:id', (req, res) => {
-  res.status(200).json({ message: `Delete goal ${req.params.id}`})
-})
+// router.post('/', (req, res) => {
+//   res.status(200).json({ message: 'Create goal' })
+// })
+
+// router.put('/:id', (req, res) => {
+//   res.status(200).json({ message: `Update goal ${req.params.id}` })
+// })
+
+// router.delete('/:id', (req, res) => {
+//   res.status(200).json({ message: `Delete goal ${req.params.id}` })
+// })
+// TESTING END
 
 // const { protect } = require('../middleware/authMiddleware')
 
