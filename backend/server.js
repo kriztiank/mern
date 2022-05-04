@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: false }))
 // TESTING END
 
 app.use('/api/goals', require('./routes/goalRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
 // overwrites the default express error handler
 app.use(errorHandler)
 
