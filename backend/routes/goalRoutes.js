@@ -7,14 +7,17 @@ const {
   deleteGoal,
 } = require('../controllers/goalController')
 
-// ANOTHER SYNTAX TO CLEAN UP THE ROUTES
-// router.route('/').get(protect, getGoals).post(protect, setGoal)
-// router.route('/:id').delete(protect, deleteGoal).put(protect, updateGoal)
+const { protect } = require('../middleware/authMiddleware')
 
-router.get('/', getGoals)
-router.post('/', setGoal)
-router.put('/:id', updateGoal)
-router.delete('/:id', deleteGoal)
+// ANOTHER SYNTAX TO CLEAN UP THE ROUTES
+router.route('/').get(protect, getGoals).post(protect, setGoal)
+router.route('/:id').delete(protect, deleteGoal).put(protect, updateGoal)
+
+// ROUTNG SYNTAX EXAMPLE
+// router.get('/', getGoals)
+// router.post('/', setGoal)
+// router.put('/:id', updateGoal)
+// router.delete('/:id', deleteGoal)
 
 // TESTING START - now imported from goalController.js
 // router.get('/', (req, res) => {
@@ -33,10 +36,5 @@ router.delete('/:id', deleteGoal)
 //   res.status(200).json({ message: `Delete goal ${req.params.id}` })
 // })
 // TESTING END
-
-// const { protect } = require('../middleware/authMiddleware')
-
-// router.route('/').get(protect, getGoals).post(protect, setGoal)
-// router.route('/:id').delete(protect, deleteGoal).put(protect, updateGoal)
 
 module.exports = router
